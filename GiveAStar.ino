@@ -2,14 +2,24 @@
 
 SH1106Wire display(0x3C, 33, 35);
 
+const int leds[1] = {5};
+
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(115200);
+
+  // OLED Setup
   display.init();
-  display.drawString(5, 44, "Give A Star!");
+  display.flipScreenVertically();
+  display.setTextAlignment(TEXT_ALIGN_LEFT);
+  display.setFont(ArialMT_Plain_10);
+  display.drawString(18, 15, "Project Give A Star!");
+  display.drawString(20, 35, "By Angelina Tsuboi");
+  display.display();
+
+  // LED Setup
+  pinMode(leds[0], OUTPUT);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
+  digitalWrite(leds[0], HIGH);
 }
