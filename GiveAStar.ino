@@ -26,6 +26,8 @@ void setup() {
     pinMode(leds[i], OUTPUT);
   }
   pinMode(button, INPUT);
+
+  display.drawXbm(50, 5, logo_width, logo_height, logo);
 }
 
 void loop() {
@@ -42,4 +44,10 @@ void loop() {
     }
     delay(100);
   }
+
+  
+}
+
+void displayIntroScreen() {
+  
 }
