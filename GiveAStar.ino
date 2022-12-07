@@ -4,6 +4,8 @@ SH1106Wire display(0x3C, 33, 35);
 
 const int leds[5] = {3, 5, 7, 9, 11};
 const int button = 16;
+// 0 = no animation, 
+int starAnimation = 0;
 
 
 void setup() {
@@ -26,7 +28,17 @@ void setup() {
 }
 
 void loop() {
-  for (int i = 0; i < 5; i++) {
+  for (int i = 1; i < 5; i++) {
     digitalWrite(leds[i], HIGH);
+  }
+
+  int pushed = digitalRead(button);
+  if (pushed == HIGH) {
+    if (starAnimation == 2) {
+      starAnimation = 0;
+    } else  {
+      starAnimation += 1;
+    }
+    delay(100);
   }
 }
