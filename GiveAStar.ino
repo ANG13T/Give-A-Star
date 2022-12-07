@@ -3,6 +3,7 @@
 SH1106Wire display(0x3C, 33, 35);
 
 const int leds[5] = {3, 5, 7, 9, 11};
+const string text[4] = {"Hello World", "You are Really Awesome", "Jshddsj dsahjdaskhjd dashdasjkhdjas dashdasjkhdsaj adshdaskjhdsaj daskjadshjkdas"};
 const int button = 16;
 // 0 = no animation, 
 int starAnimation = 0;
