@@ -2,7 +2,9 @@
 
 SH1106Wire display(0x3C, 33, 35);
 
-const int leds[1] = {5};
+const int leds[5] = {3, 5, 7, 9, 11};
+const int button = 16;
+
 
 void setup() {
   Serial.begin(115200);
@@ -17,9 +19,14 @@ void setup() {
   display.display();
 
   // LED Setup
-  pinMode(leds[0], OUTPUT);
+  for (int i = 0; i < 5; i++) {
+    pinMode(leds[i], OUTPUT);
+  }
+  pinMode(button, INPUT);
 }
 
 void loop() {
-  digitalWrite(leds[0], HIGH);
+  for (int i = 0; i < 5; i++) {
+    digitalWrite(leds[i], HIGH);
+  }
 }
