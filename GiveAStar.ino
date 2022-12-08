@@ -1,6 +1,8 @@
 #include "SH1106Wire.h"
 #include "graphics.h"
 
+// 1. Finish Image, Fix Push Button Input, Make Text Slideshow, Make Animations, Make Schematic, Print PCB
+
 SH1106Wire display(0x3C, 33, 35);
 
 const int leds[5] = {3, 5, 7, 9, 11};
