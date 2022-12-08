@@ -59,6 +59,27 @@ void loop() {
       delay(1000);
       digitalWrite(leds[i], LOW);
     }
+  } else if (starAnimation == 2) {
+     digitalWrite(leds[2], HIGH);
+     delay(1000);
+     resetLEDs();
+     digitalWrite(leds[1], HIGH);
+     digitalWrite(leds[3], HIGH);
+     delay(1000);
+     resetLEDs();
+     digitalWrite(leds[0], HIGH);
+     digitalWrite(leds[4], HIGH);
+     delay(1000);
+     resetLEDs();
+  } else {
+    for (int i = 0; i < 5; i++) {
+      digitalWrite(leds[i], HIGH);
+    }
+    delay(1000);
+    for (int i = 0; i < 5; i++) {
+      digitalWrite(leds[i], LOW);
+    }
+    delay(1000);
   }
 
   delay(100);
