@@ -8,7 +8,7 @@ SH1106Wire display(0x3C, 33, 35);
 const int leds[5] = {3, 5, 7, 9, 11};
 const String text[4] = {"Hello World", "You are Really Awesome", "Jshddsj dsahjdaskhjd dashdasjkhdjas dashdasjkhdsaj adshdaskjhdsaj daskjadshjkdas"};
 const int button = 16;
-// 0 = no animation, 
+// 0 = no animation, 1 = in order, 2 = pairs, 3 = flashing
 int starAnimation = 0;
 
 
@@ -24,7 +24,7 @@ void setup() {
   display.display();
 
   // LED Setup
-  for (int i = starAnimation; i < 5; i++) {
+  for (int i = 0; i < 5; i++) {
     pinMode(leds[i], OUTPUT);
   }
   pinMode(button, INPUT);
@@ -33,10 +33,6 @@ void setup() {
 }
 
 void loop() {
-
- for (int i = 0; i < 5; i++) {
-    digitalWrite(leds[i], HIGH);
- }
  
   int pushed = digitalRead(button);
 
@@ -50,7 +46,19 @@ void loop() {
     } else  {
       starAnimation += 1;
     }
-    
+    resetLEDs();
+  }
+
+  if (starAnimation == 0) {
+    for (int i = 0; i < 5; i++) {
+      digitalWrite(leds[i], HIGH);
+    }
+  } else if (starAnimation == 1) {
+    for (int i = 0; i < 5; i++) {
+      digitalWrite(leds[i], HIGH);
+      delay(1000);
+      digitalWrite(leds[i], LOW);
+    }
   }
 
   delay(100);
@@ -59,4 +67,10 @@ void loop() {
 
 void displayIntroScreen() {
   
+}
+
+void resetLEDs() {
+  for (int i = 0; i < 5; i++) {
+    digitalWrite(leds[i], LOW);
+  }
 }
