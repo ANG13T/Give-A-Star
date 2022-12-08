@@ -12,6 +12,13 @@ const int button = 16;
 int starAnimation = 0;
 
 
+/* Two independant timed evenets */
+const unsigned long eventTime_1_LEDs = 1000; // interval in ms
+const unsigned long eventTime_2_screen = 10;
+
+unsigned long previousTime_1 = 0;
+unsigned long previousTime_2 = 0;
+
 void setup() {
   Serial.begin(115200);
 
@@ -33,11 +40,8 @@ void setup() {
 }
 
 void loop() {
- 
+  unsigned long currentTime = millis();
   int pushed = digitalRead(button);
-
-  display.drawString(40, 0, starAnimation + " anim");
-  display.display();
   
   if (pushed == HIGH) {
     Serial.print("pushed!!");
@@ -49,6 +53,7 @@ void loop() {
     resetLEDs();
   }
 
+  if( currentTime - previousTime_1 >= eventTime_1_LEDs ){
   if (starAnimation == 0) {
     for (int i = 0; i < 5; i++) {
       digitalWrite(leds[i], HIGH);
@@ -82,8 +87,18 @@ void loop() {
     delay(1000);
   }
 
-  delay(100);
+  /* Update the timing for the next event */
+  previousTime_1 = currentTime;
+  
+}
+
+if( currentTime - previousTime_2 >= eventTime_2_screen ){
   display.clear();
+  display.drawString(40, 0, starAnimation + " anim");
+  display.display();
+}
+
+  
 }
 
 void displayIntroScreen() {
