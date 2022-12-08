@@ -20,32 +20,41 @@ void setup() {
   display.flipScreenVertically();
   display.setTextAlignment(TEXT_ALIGN_LEFT);
   display.setFont(ArialMT_Plain_10);
-  display.drawXbm(0, 5, logo_width, logo_height, logo);
+  display.drawXbm(5, 5, logo_width, logo_height, logo);
   display.display();
 
   // LED Setup
-  for (int i = 0; i < 5; i++) {
+  for (int i = starAnimation; i < 5; i++) {
     pinMode(leds[i], OUTPUT);
   }
   pinMode(button, INPUT);
+  delay(1000);
+  display.clear();
 }
 
 void loop() {
-  for (int i = 1; i < 5; i++) {
-    digitalWrite(leds[i], HIGH);
-  }
 
+ for (int i = 0; i < 5; i++) {
+    digitalWrite(leds[i], HIGH);
+ }
+ 
   int pushed = digitalRead(button);
+
+  display.drawString(40, 0, starAnimation + " anim");
+  display.display();
+  
   if (pushed == HIGH) {
+    Serial.print("pushed!!");
     if (starAnimation == 2) {
       starAnimation = 0;
     } else  {
       starAnimation += 1;
     }
-    delay(100);
+    
   }
 
-  
+  delay(100);
+  display.clear();
 }
 
 void displayIntroScreen() {
