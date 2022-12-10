@@ -14,10 +14,16 @@ int starAnimation = 0;
 
 /* Two independant timed evenets */
 const unsigned long eventTime_1_LEDs = 1000; // interval in ms
+int selectedLED = 0;
 const unsigned long eventTime_2_screen = 10;
+const unsigned long eventTime_3_button = 10;
 
 unsigned long previousTime_1 = 0;
 unsigned long previousTime_2 = 0;
+unsigned long previousTime_3 = 0;
+
+// Indeces for each animation
+int selectedLED2 = 0;
 
 void setup() {
   Serial.begin(115200);
@@ -41,68 +47,95 @@ void setup() {
 
 void loop() {
   unsigned long currentTime = millis();
-  int pushed = digitalRead(button);
-  
-  if (pushed == HIGH) {
-    Serial.print("pushed!!");
-    if (starAnimation == 2) {
-      starAnimation = 0;
-    } else  {
-      starAnimation += 1;
+
+  if (currentTime - previousTime_3 >= eventTime_3_button) {
+    int pushed = digitalRead(button);
+
+    if (pushed == HIGH) {
+      Serial.print("pushed!!");
+      if (starAnimation == 2) {
+        starAnimation = 0;
+      } else  {
+        starAnimation += 1;
+      }
+      resetLEDs();
+      delay(500);
     }
-    resetLEDs();
+    previousTime_3 = currentTime;
   }
 
-  if( currentTime - previousTime_1 >= eventTime_1_LEDs ){
-  if (starAnimation == 0) {
-    for (int i = 0; i < 5; i++) {
-      digitalWrite(leds[i], HIGH);
-    }
-  } else if (starAnimation == 1) {
-    for (int i = 0; i < 5; i++) {
-      digitalWrite(leds[i], HIGH);
+  if (currentTime - previousTime_1 >= eventTime_1_LEDs) {
+    if (starAnimation == 0) {
+      for (int i = 0; i < 5; i++) {
+        digitalWrite(leds[i], HIGH);
+      }
+    } else if (starAnimation == 1) {
+        digitalWrite(leds[selectedLED2], HIGH);
+        digitalWrite(leds[getPrevLED(selectedLED2)], LOW);
+        selectedLED2 = getNextLED(selectedLED2);
+    } else if (starAnimation == 2) {
+      digitalWrite(leds[2], HIGH);
       delay(1000);
-      digitalWrite(leds[i], LOW);
+      resetLEDs();
+      digitalWrite(leds[1], HIGH);
+      digitalWrite(leds[3], HIGH);
+      delay(1000);
+      resetLEDs();
+      digitalWrite(leds[0], HIGH);
+      digitalWrite(leds[4], HIGH);
+      delay(1000);
+      resetLEDs();
+    } else {
+      for (int i = 0; i < 5; i++) {
+        digitalWrite(leds[i], HIGH);
+      }
+      delay(1000);
+      for (int i = 0; i < 5; i++) {
+        digitalWrite(leds[i], LOW);
+      }
+      delay(1000);
     }
-  } else if (starAnimation == 2) {
-     digitalWrite(leds[2], HIGH);
-     delay(1000);
-     resetLEDs();
-     digitalWrite(leds[1], HIGH);
-     digitalWrite(leds[3], HIGH);
-     delay(1000);
-     resetLEDs();
-     digitalWrite(leds[0], HIGH);
-     digitalWrite(leds[4], HIGH);
-     delay(1000);
-     resetLEDs();
-  } else {
-    for (int i = 0; i < 5; i++) {
-      digitalWrite(leds[i], HIGH);
-    }
-    delay(1000);
-    for (int i = 0; i < 5; i++) {
-      digitalWrite(leds[i], LOW);
-    }
-    delay(1000);
+
+    previousTime_1 = currentTime;
   }
 
-  /* Update the timing for the next event */
-  previousTime_1 = currentTime;
-  
-}
+  if (currentTime - previousTime_2 >= eventTime_2_screen) {
+    display.clear();
+    if (starAnimation == 0) {
+      display.drawString(40, 0, "Plain Animation");
+    } else if (starAnimation == 1) {
+      display.drawString(40, 0, "In Order Animation");
+    } else if (starAnimation == 2) {
+      display.drawString(40, 0, "Pairs Animation");
+    } else {
+      display.drawString(40, 0, "Flashing");
+    }
+    
+    display.display();
 
-if( currentTime - previousTime_2 >= eventTime_2_screen ){
-  display.clear();
-  display.drawString(40, 0, starAnimation + " anim");
-  display.display();
-}
+    previousTime_2 = currentTime;
+  }
 
-  
 }
 
 void displayIntroScreen() {
-  
+
+}
+
+int getPrevLED(int val) {
+  if (val == 0) {
+    return 4;
+  } else {
+    return val - 1;
+  }
+}
+
+int getNextLED(int val) {
+  if (val == 4) {
+    return  0;
+  } else {
+    return val + 1;
+  }
 }
 
 void resetLEDs() {
