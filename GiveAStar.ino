@@ -11,8 +11,6 @@ const int button = 16;
 // 0 = no animation, 1 = in order, 2 = pairs (set starting point), 3 = flashing
 int starAnimation = 0;
 
-
-/* Two independant timed evenets */
 const unsigned long eventTime_1_LEDs = 1000; // interval in ms
 int selectedLED = 0;
 const unsigned long eventTime_2_screen = 10;
@@ -53,11 +51,13 @@ void loop() {
     int pushed = digitalRead(button);
 
     if (pushed == HIGH) {
-      Serial.print("pushed!!");
       if (starAnimation == 3) {
         starAnimation = 0;
       } else  {
         starAnimation += 1;
+        if (starAnimation == 2) {
+          selectedLED2 = 0;
+        }
       }
       resetLEDs();
       delay(500);
@@ -96,6 +96,7 @@ void loop() {
           digitalWrite(leds[i], LOW);
         }
       }
+      isFlashing = !isFlashing;
     }
 
     previousTime_1 = currentTime;
