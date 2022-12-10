@@ -8,7 +8,7 @@ SH1106Wire display(0x3C, 33, 35);
 const int leds[5] = {3, 5, 7, 9, 11};
 const String text[4] = {"Hello World", "You are Really Awesome", "Jshddsj dsahjdaskhjd dashdasjkhdjas dashdasjkhdsaj adshdaskjhdsaj daskjadshjkdas"};
 const int button = 16;
-// 0 = no animation, 1 = in order, 2 = pairs, 3 = flashing
+// 0 = no animation, 1 = in order, 2 = pairs (set starting point), 3 = flashing
 int starAnimation = 0;
 
 
@@ -24,6 +24,7 @@ unsigned long previousTime_3 = 0;
 
 // Indeces for each animation
 int selectedLED2 = 0;
+bool isFlashing = true;
 
 void setup() {
   Serial.begin(115200);
@@ -53,7 +54,7 @@ void loop() {
 
     if (pushed == HIGH) {
       Serial.print("pushed!!");
-      if (starAnimation == 2) {
+      if (starAnimation == 3) {
         starAnimation = 0;
       } else  {
         starAnimation += 1;
@@ -74,26 +75,27 @@ void loop() {
         digitalWrite(leds[getPrevLED(selectedLED2)], LOW);
         selectedLED2 = getNextLED(selectedLED2);
     } else if (starAnimation == 2) {
-      digitalWrite(leds[2], HIGH);
-      delay(1000);
-      resetLEDs();
-      digitalWrite(leds[1], HIGH);
-      digitalWrite(leds[3], HIGH);
-      delay(1000);
-      resetLEDs();
-      digitalWrite(leds[0], HIGH);
-      digitalWrite(leds[4], HIGH);
-      delay(1000);
-      resetLEDs();
+       resetLEDs();
+      if(selectedLED2 == 0) {
+        digitalWrite(leds[2], HIGH);
+      } else if (selectedLED2 == 1) {
+        digitalWrite(leds[1], HIGH);
+        digitalWrite(leds[3], HIGH);
+      } else {
+        digitalWrite(leds[0], HIGH);
+        digitalWrite(leds[4], HIGH);
+      }
+      selectedLED2 = getNextLEDPairs(selectedLED2);
     } else {
-      for (int i = 0; i < 5; i++) {
-        digitalWrite(leds[i], HIGH);
+      if (isFlashing) {
+        for (int i = 0; i < 5; i++) {
+          digitalWrite(leds[i], HIGH);
+        }
+      } else {
+        for (int i = 0; i < 5; i++) {
+          digitalWrite(leds[i], LOW);
+        }
       }
-      delay(1000);
-      for (int i = 0; i < 5; i++) {
-        digitalWrite(leds[i], LOW);
-      }
-      delay(1000);
     }
 
     previousTime_1 = currentTime;
@@ -136,6 +138,14 @@ int getNextLED(int val) {
   } else {
     return val + 1;
   }
+}
+
+int getNextLEDPairs(int val) {
+  if (val == 2) {
+    return 0;  
+  } else {
+    return val + 1;  
+  } 
 }
 
 void resetLEDs() {
