@@ -5,7 +5,7 @@
 
 SH1106Wire display(0x3C, 33, 35);
 
-const int leds[5] = {3, 5, 7, 9, 11};
+const int leds[5] = {5, 7, 9, 11, 12};
 const String text[3] = {"You are amazing! \n I appreciate you.", "Thank you for always being kind. \n I'm so glad to be your friend.", "Thank you for your kindness \n Happy Holidays!"};
 const int button = 16;
 // 0 = no animation, 1 = in order, 2 = pairs (set starting point), 3 = flashing
