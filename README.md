@@ -18,3 +18,14 @@
 | Tactile Push Button | Change light animation |
 | 6x LED | Display animations |
 | 6x 100ohm Resistors | Manage voltage |
+
+## Hardware Setup
+
+## Schematic
+<img src="https://github.com/angelina-tsuboi/give-a-star/blob/main/assets/Schematic.png" alt="Give A Star schematic" width="700"/>
+
+## PCB Design
+<img src="https://github.com/angelina-tsuboi/give-a-star/blob/main/assets/Design_PCB.png" alt="Give A Star PCB Design" width="500"/>
+
+
+<img src="https://github.com/angelina-tsuboi/give-a-star/blob/main/assets/Front_PCB.png" alt="Give A Star PCB Front" width="400"/><img src="https://github.com/angelina-tsuboi/give-a-star/blob/main/assets/Back_PCB.png" alt="Give A Star PCB Back" width="400"/>
