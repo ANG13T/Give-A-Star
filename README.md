@@ -58,6 +58,13 @@
 | SCK | 35 | D1 |
 | SDA | 33 | D2 |
 
+**Push Button** 
+| Button Pin | ESP32-S2 Pin | D1 Mini Pin |
+| --- | --- | --- |
+| 1 | 3V3 | 3V3 |
+| 2 | 16 | D4 |
+| 2 | GND | GND |
+
 
 ## Schematic
 <img src="https://github.com/angelina-tsuboi/give-a-star/blob/main/assets/Schematic.png" alt="Give A Star schematic" width="700"/>
