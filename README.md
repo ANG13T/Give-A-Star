@@ -25,26 +25,38 @@
 | --- | --- | --- |
 | VIN | 9 | D6 |
 | GND | GND | GND |
+
 **Right LED** 
 | LED Pin | ESP32-S2 Pin | D1 Mini Pin |
 | --- | --- | --- |
 | VIN | 7 | D5 |
 | GND | GND | GND |
+
 **Bottom Right LED** 
 | LED Pin | ESP32-S2 Pin | D1 Mini Pin |
 | --- | --- | --- |
 | VIN | 5 | D0 |
 | GND | GND | GND |
+
 **Left LED** 
 | LED Pin | ESP32-S2 Pin | D1 Mini Pin |
 | --- | --- | --- |
 | VIN | 11 | D7 |
 | GND | GND | GND |
+
 **Bottom Left LED** 
 | LED Pin | ESP32-S2 Pin | D1 Mini Pin |
 | --- | --- | --- |
 | VIN | 12 | D8 |
 | GND | GND | GND |
+
+**OLED SSH1106** 
+| OLED Pin | ESP32-S2 Pin | D1 Mini Pin |
+| --- | --- | --- |
+| VCC | 3V3 | 3V3 |
+| GND | GND | GND |
+| SCK | 35 | D1 |
+| SDA | 33 | D2 |
 
 
 ## Schematic
