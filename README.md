@@ -20,6 +20,32 @@
 | 6x 100ohm Resistors | Manage voltage |
 
 ## Hardware Setup
+**Top LED** 
+| LED Pin | ESP32-S2 Pin | D1 Mini Pin |
+| --- | --- | --- |
+| VIN | 9 | D6 |
+| GND | GND | GND |
+**Right LED** 
+| LED Pin | ESP32-S2 Pin | D1 Mini Pin |
+| --- | --- | --- |
+| VIN | 7 | D5 |
+| GND | GND | GND |
+**Bottom Right LED** 
+| LED Pin | ESP32-S2 Pin | D1 Mini Pin |
+| --- | --- | --- |
+| VIN | 5 | D0 |
+| GND | GND | GND |
+**Left LED** 
+| LED Pin | ESP32-S2 Pin | D1 Mini Pin |
+| --- | --- | --- |
+| VIN | 11 | D7 |
+| GND | GND | GND |
+**Bottom Left LED** 
+| LED Pin | ESP32-S2 Pin | D1 Mini Pin |
+| --- | --- | --- |
+| VIN | 12 | D8 |
+| GND | GND | GND |
+
 
 ## Schematic
 <img src="https://github.com/angelina-tsuboi/give-a-star/blob/main/assets/Schematic.png" alt="Give A Star schematic" width="700"/>
