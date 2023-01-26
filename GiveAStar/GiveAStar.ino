@@ -28,7 +28,7 @@ void setup() {
   display.setTextAlignment(TEXT_ALIGN_CENTER);
 
   // LED Setup
-  for (int i = 0; i < 10; i++) {
+  for (int i = 0; i < 5; i++) {
     pinMode(leds[i], OUTPUT);
   }
   pinMode(button, INPUT);
@@ -40,6 +40,7 @@ void loop() {
     int pushed = digitalRead(button);
 
     if (pushed == HIGH) {
+      Serial.print("inside");
       if (starAnimation == 3) {
         starAnimation = 0;
       } else  {
@@ -53,6 +54,7 @@ void loop() {
     }
     
     if (starAnimation == 0) {
+      Serial.print("inside 2");
       for (int i = 0; i < 5; i++) {
         digitalWrite(leds[i], HIGH);
       }
@@ -84,6 +86,8 @@ void loop() {
       }
       isFlashing = !isFlashing;
     }
+
+    delay(500);
 }
 
 int getPrevLED(int val) {
