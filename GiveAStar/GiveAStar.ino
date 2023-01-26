@@ -114,6 +114,21 @@ int getNextLED(int val) {
   }
 }
 
+void showStarImage(int val) {
+  display.clear();
+  if (val == 0) {
+    display.drawXbm(5, 5, logo_width, logo_height, logo);
+  } else if (val == 1) {
+    display.drawXbm(5, 5, logo_width, logo_height, logo);
+  } else if (val == 2) {
+    display.drawXbm(5, 5, logo_width, logo_height, logo);
+  } else {
+    display.drawXbm(5, 5, logo_width, logo_height, logo);
+  }
+  
+  display.display();
+}
+
 int getNextLEDPairs(int val) {
   if (val == 2) {
     return 0;
