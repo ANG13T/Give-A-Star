@@ -121,13 +121,13 @@ int getNextLED(int val) {
 void showStarImage(int val) {
   display.clear();
   if (val == 0) {
-    display.drawXbm(5, 5, Star_1_width, Star_1_height, Star_1_image);
+    display.drawXbm(15, 0, Star_1_width, Star_1_height, Star_1_image);
   } else if (val == 1) {
-    display.drawXbm(5, 5, Star_2_width, Star_2_height, Star_2_image);
+    display.drawXbm(15, 0, Star_2_width, Star_2_height, Star_2_image);
   } else if (val == 2) {
-    display.drawXbm(5, 5, Star_3_width, Star_3_height, Star_3_image);
+    display.drawXbm(15, 0, Star_3_width, Star_3_height, Star_3_image);
   } else {
-    display.drawXbm(5, 5, Star_4_width, Star_4_height, Star_4_image);
+    display.drawXbm(15, 0, Star_4_width, Star_4_height, Star_4_image);
   }
   
   display.display();
