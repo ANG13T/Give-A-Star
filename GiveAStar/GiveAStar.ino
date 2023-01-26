@@ -13,7 +13,7 @@ int selectedLED = 0;
 bool isFlashing = true;
 
 // timing controls
-long interval = 1000; // length of animation interval
+long interval = 750; // length of animation interval (milliseconds)
 long previousMillis = 0;
 
 void setup() {
