@@ -2,7 +2,7 @@
 <img src="https://github.com/angelina-tsuboi/give-a-star/blob/main/assets/Main.png" alt="Give A Star logo" width="500"/>
 </div>
 
-<h3 style="text-align:center" align="center">A Star-Shaped PCB Board Gift based on the ESP32-S2 and D1 Mini to teach the basics of soldering</h3>
+<h3 style="text-align:center" align="center">A Star PCB Board based on the ESP32-S2 and D1 Mini to teach the basics of soldering</h3>
 
 ## Features
 - Display a kind visual message to someone
@@ -74,3 +74,6 @@
 
 
 <img src="https://github.com/angelina-tsuboi/give-a-star/blob/main/assets/Front_PCB.png" alt="Give A Star PCB Front" width="400"/><img src="https://github.com/angelina-tsuboi/give-a-star/blob/main/assets/Back_PCB.png" alt="Give A Star PCB Back" width="400"/>
+
+# Photos
+<img src="https://github.com/angelina-tsuboi/Give-A-Star/blob/main/assets/Star_IMG_1.png" alt="Give A Star Photo 1" width="400" marginLeft="10"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/angelina-tsuboi/Give-A-Star/blob/main/assets/Star_IMG_2.png" alt="Give A Star Photo 2" width="415" height="446"/>
