@@ -15,6 +15,9 @@ int selectedLED2 = 0;
 bool isFlashing = true;
 int selectedSlide = 0;
 
+long interval = 1000;
+long previousMillis = 0;
+
 void setup() {
   Serial.begin(115200);
 
@@ -37,34 +40,39 @@ void setup() {
 }
 
 void loop() {
-    int pushed = digitalRead(button);
+  int pushed = digitalRead(button);
 
-    if (pushed == HIGH) {
-      Serial.print("inside");
-      if (starAnimation == 3) {
-        starAnimation = 0;
-      } else  {
-        starAnimation += 1;
-        if (starAnimation == 2) {
-          selectedLED2 = 0;
-        }
+  if (pushed == HIGH) {
+    Serial.print("inside");
+    if (starAnimation == 3) {
+      starAnimation = 0;
+    } else  {
+      starAnimation += 1;
+      if (starAnimation == 2) {
+        selectedLED2 = 0;
       }
-      resetLEDs();
-      delay(500);
     }
-    
+    resetLEDs();
+    delay(500);
+  }
+
+  unsigned long currentMillis = millis();
+
+  if (currentMillis - previousMillis > interval) {
+    // save the last time you blinked the LED
+    previousMillis = currentMillis;
+
     if (starAnimation == 0) {
-      Serial.print("inside 2");
       for (int i = 0; i < 5; i++) {
         digitalWrite(leds[i], HIGH);
       }
     } else if (starAnimation == 1) {
-        digitalWrite(leds[selectedLED2], HIGH);
-        digitalWrite(leds[getPrevLED(selectedLED2)], LOW);
-        selectedLED2 = getNextLED(selectedLED2);
+      digitalWrite(leds[selectedLED2], HIGH);
+      digitalWrite(leds[getPrevLED(selectedLED2)], LOW);
+      selectedLED2 = getNextLED(selectedLED2);
     } else if (starAnimation == 2) {
-       resetLEDs();
-      if(selectedLED2 == 0) {
+      resetLEDs();
+      if (selectedLED2 == 0) {
         digitalWrite(leds[2], HIGH);
       } else if (selectedLED2 == 1) {
         digitalWrite(leds[1], HIGH);
@@ -86,8 +94,8 @@ void loop() {
       }
       isFlashing = !isFlashing;
     }
+  }
 
-    delay(500);
 }
 
 int getPrevLED(int val) {
@@ -108,10 +116,10 @@ int getNextLED(int val) {
 
 int getNextLEDPairs(int val) {
   if (val == 2) {
-    return 0;  
+    return 0;
   } else {
-    return val + 1;  
-  } 
+    return val + 1;
+  }
 }
 
 void resetLEDs() {
