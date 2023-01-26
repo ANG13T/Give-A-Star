@@ -63,14 +63,17 @@ void loop() {
     previousMillis = currentMillis;
 
     if (starAnimation == 0) {
+      showStarImage(0);
       for (int i = 0; i < 5; i++) {
         digitalWrite(leds[i], HIGH);
       }
     } else if (starAnimation == 1) {
+      showStarImage(1);
       digitalWrite(leds[selectedLED2], HIGH);
       digitalWrite(leds[getPrevLED(selectedLED2)], LOW);
       selectedLED2 = getNextLED(selectedLED2);
     } else if (starAnimation == 2) {
+      showStarImage(2);
       resetLEDs();
       if (selectedLED2 == 0) {
         digitalWrite(leds[2], HIGH);
@@ -83,6 +86,7 @@ void loop() {
       }
       selectedLED2 = getNextLEDPairs(selectedLED2);
     } else {
+      showStarImage(3);
       if (isFlashing) {
         for (int i = 0; i < 5; i++) {
           digitalWrite(leds[i], HIGH);
@@ -117,13 +121,13 @@ int getNextLED(int val) {
 void showStarImage(int val) {
   display.clear();
   if (val == 0) {
-    display.drawXbm(5, 5, logo_width, logo_height, logo);
+    display.drawXbm(5, 5, Star_1_width, Star_1_height, Star_1_image);
   } else if (val == 1) {
-    display.drawXbm(5, 5, logo_width, logo_height, logo);
+    display.drawXbm(5, 5, Star_2_width, Star_2_height, Star_2_image);
   } else if (val == 2) {
-    display.drawXbm(5, 5, logo_width, logo_height, logo);
+    display.drawXbm(5, 5, Star_3_width, Star_3_height, Star_3_image);
   } else {
-    display.drawXbm(5, 5, logo_width, logo_height, logo);
+    display.drawXbm(5, 5, Star_4_width, Star_4_height, Star_4_image);
   }
   
   display.display();
