@@ -1,24 +1,14 @@
 #include "SH1106Wire.h"
 #include "graphics.h"
 
-// 1. Write Inputs, Make Schematic, Print PCB
+// Fix Software at End, increase delays, make text display better, add images to README, make 3 min video for YouTube, publish
 
 SH1106Wire display(0x3C, 33, 35);
 
 const int leds[5] = {5, 7, 9, 11, 12};
-const String text[3] = {"You are amazing! \n I appreciate you.", "Thank you for always being kind. \n I'm so glad to be your friend.", "Thank you for your kindness \n Happy Holidays!"};
 const int button = 16;
 // 0 = no animation, 1 = in order, 2 = pairs (set starting point), 3 = flashing
 int starAnimation = 0;
-
-const unsigned long eventTime_1_LEDs = 1000; // interval in ms
-int selectedLED = 0;
-const unsigned long eventTime_2_screen = 3000;
-const unsigned long eventTime_3_button = 10;
-
-unsigned long previousTime_1 = 0;
-unsigned long previousTime_2 = 0;
-unsigned long previousTime_3 = 0;
 
 // Indeces for each animation
 int selectedLED2 = 0;
@@ -38,7 +28,7 @@ void setup() {
   display.setTextAlignment(TEXT_ALIGN_CENTER);
 
   // LED Setup
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 10; i++) {
     pinMode(leds[i], OUTPUT);
   }
   pinMode(button, INPUT);
@@ -47,9 +37,6 @@ void setup() {
 }
 
 void loop() {
-  unsigned long currentTime = millis();
-
-  if (currentTime - previousTime_3 >= eventTime_3_button) {
     int pushed = digitalRead(button);
 
     if (pushed == HIGH) {
@@ -64,10 +51,7 @@ void loop() {
       resetLEDs();
       delay(500);
     }
-    previousTime_3 = currentTime;
-  }
-
-  if (currentTime - previousTime_1 >= eventTime_1_LEDs) {
+    
     if (starAnimation == 0) {
       for (int i = 0; i < 5; i++) {
         digitalWrite(leds[i], HIGH);
@@ -100,21 +84,6 @@ void loop() {
       }
       isFlashing = !isFlashing;
     }
-
-    previousTime_1 = currentTime;
-  }
-
-  if (currentTime - previousTime_2 >= eventTime_2_screen) {
-    display.clear();
-    display.setTextAlignment(TEXT_ALIGN_LEFT);
-    display.setFont(ArialMT_Plain_10);
-    display.drawStringMaxWidth(10, 10, 128, text[selectedSlide]);
-    display.display();
-
-    selectedSlide = getNextSlide(selectedSlide);
-    previousTime_2 = currentTime;
-  }
-
 }
 
 int getPrevLED(int val) {
@@ -127,14 +96,6 @@ int getPrevLED(int val) {
 
 int getNextLED(int val) {
   if (val == 4) {
-    return  0;
-  } else {
-    return val + 1;
-  }
-}
-
-int getNextSlide(int val) {
-  if (val == sizeof(text)) {
     return  0;
   } else {
     return val + 1;
