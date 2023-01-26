@@ -75,5 +75,5 @@
 
 <img src="https://github.com/angelina-tsuboi/give-a-star/blob/main/assets/Front_PCB.png" alt="Give A Star PCB Front" width="400"/><img src="https://github.com/angelina-tsuboi/give-a-star/blob/main/assets/Back_PCB.png" alt="Give A Star PCB Back" width="400"/>
 
-# Photos
+## Photos
 <img src="https://github.com/angelina-tsuboi/Give-A-Star/blob/main/assets/Star_IMG_1.png" alt="Give A Star Photo 1" width="400" marginLeft="10"/>&nbsp;&nbsp;<img src="https://github.com/angelina-tsuboi/Give-A-Star/blob/main/assets/Star_IMG_2.png" alt="Give A Star Photo 2" width="415" height="446"/>
