@@ -66,6 +66,9 @@
 | 2 | GND | GND |
 
 
+## Breadboard
+<img src="https://github.com/angelina-tsuboi/give-a-star/blob/main/assets/Breadboard.png" alt="Give A Star schematic" width="700"/>
+
 ## Schematic
 <img src="https://github.com/angelina-tsuboi/give-a-star/blob/main/assets/Schematic.png" alt="Give A Star schematic" width="700"/>
 
